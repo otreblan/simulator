@@ -51,3 +51,4 @@ Makefile
 # More things
 config.h
 libtool
+compile_commands.json
