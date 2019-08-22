@@ -5,7 +5,6 @@ AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 #Checking if some programs are installed
 AC_LANG([C++])
 AC_PROG_CXX
-AC_PROG_CXX_C_O
 AC_PROG_INSTALL
 AC_PROG_LIBTOOL
 
