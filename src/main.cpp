@@ -11,28 +11,29 @@ int main(int argc, char *argv[])
 	// No errors from getopt (flag)
 	opterr=0;
 
-	// Argument parsing loop
+	// Declaration of long arguments{{{
+	static struct option options[] =
+	{
+		{"help", no_argument, 0, 'h'},
+		{"output", required_argument, 0, 'o'},
+		{0,0,0,0}
+	};
+	//}}}
+	// Argument parsing loop{{{
 	while(true)
 	{
-		// Declaration of long arguments
-		static struct option options[] =
-		{
-			{"help", no_argument, 0, 'h'},
-			{"output", required_argument, 0, 'o'},
-			{0,0,0,0}
-		};
-
 		int option_index = 0;
 
 		// The actual parsing
 		cc = getopt_long(argc, argv, "ho:", options, &option_index);
 
-		// No more parseable arguments
+		// No more parseable arguments{{{
 		if(cc == -1)
 		{
 			break;
 		}
-		// Argument switch table
+		//}}}
+		// Argument switch table{{{
 		switch(cc)
 		{
 			case 'h':
@@ -45,6 +46,8 @@ int main(int argc, char *argv[])
 				std::cerr << "No\n";
 				break;
 		}
+		//}}}
 	}
+	//}}}
 	return 0;
 }
