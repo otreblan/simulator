@@ -2,6 +2,7 @@
 #include <getopt.h>
 #include "config.h"
 
+void help(char**);
 
 int main(int argc, char *argv[])
 {
@@ -11,11 +12,18 @@ int main(int argc, char *argv[])
 	// No errors from getopt (flag)
 	opterr=0;
 
+	// Implicit help when no arguments are passed
+	if(argc == 1)
+	{
+		help(argv);
+		exit(2);
+	}
+
 	// Declaration of long arguments{{{
 	static struct option options[] =
 	{
 		{"help", no_argument, 0, 'h'},
-		{"output", required_argument, 0, 'o'},
+		{"input", required_argument, 0, 'i'},
 		{0,0,0,0}
 	};
 	//}}}
@@ -37,10 +45,10 @@ int main(int argc, char *argv[])
 		switch(cc)
 		{
 			case 'h':
-				std::cout << "Ayuda\n";
+				help(argv);
 				break;
-			case 'o':
-				std::cout << "-->" << optarg << '\n';
+			case 'i':
+				//Input
 				break;
 			case '?':
 				std::cerr << "No\n";
@@ -50,4 +58,13 @@ int main(int argc, char *argv[])
 	}
 	//}}}
 	return 0;
+}
+
+void help(char* argv[])
+{
+	std::cout << "Uso:\n"
+		<< "    " << argv[0] << " [opción]\n"
+		<< "Opciones:\n"
+		<< "    " << "-h, --help             Muestra la ayuda\n"
+		<< "    " << "-i, --input=TEXTO      Input del programa\n";
 }
