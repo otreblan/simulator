@@ -3,4 +3,4 @@ EXTRA_DIST = hello.adoc
 
 # This thing converts .adoc to .man
 .adoc.man:
-	asciidoctor --backend manpage --out-file $@ $<
+	$(ASCII) --backend manpage --out-file $@ $<
