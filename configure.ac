@@ -4,7 +4,7 @@
 
 # AC_CHECK_CHECK_PROG([variable], [program-name])
 AC_DEFUN(AC_CHECK_CHECK_PROG,[
-	AC_CHECK_PROG([$1], [$2]. [$2], [])
+	AC_CHECK_PROG([$1], [$2], [$2], [])
 	if test -z $$1
 	then
 		AC_MSG_ERROR([$2 not found.])
