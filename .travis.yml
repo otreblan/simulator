@@ -1,21 +1,20 @@
 sudo: required
 
 services:
-- docker
-
-language: cpp
-
-compiler:
-  - gcc
+    - docker
 
 arch:
-  packages:
-    - asciidoctor
-  script:
-    - "autoreconf --install"
-    - "./configure"
-    - "make"
-    - "sudo make install"
+    packages:
+        - asciidoctor
+    mount:
+        - ~/.pkg-cache:/var/cache/pacman/pkg
+    before_install:
+        - "sudo ln -s /dev/null /etc/pacman.d/hooks/package-cleanup.hook"
+    script:
+        - "autoreconf --install"
+        - "./configure"
+        - "make"
+        - "sudo make install"
 
 script:
-  - "curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash"
+    - "curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash"
