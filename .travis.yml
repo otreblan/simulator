@@ -5,6 +5,8 @@ services:
     - docker
 
 arch:
+    packages:
+        - "ruby"
     mount:
         - ~/.pkg-cache:/var/cache/pacman/pkg
     script:
