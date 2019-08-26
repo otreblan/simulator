@@ -5,7 +5,7 @@ services:
 
 arch:
     packages:
-        - asciidoctor
+        - "asciidoctor"
     mount:
         - ~/.pkg-cache:/var/cache/pacman/pkg
     script:
