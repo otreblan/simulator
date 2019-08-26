@@ -1,15 +1,14 @@
 sudo: required
 
+
 services:
     - docker
 
 arch:
-    packages:
-        - "asciidoctor"
     mount:
         - ~/.pkg-cache:/var/cache/pacman/pkg
     script:
-        - "sudo pacman -Syu --noconfirm asciidoctor"
+        - "gem install asciidoctor"
         - "autoreconf --install"
         - "./configure"
         - "make"
