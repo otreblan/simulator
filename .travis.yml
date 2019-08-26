@@ -9,7 +9,7 @@ arch:
     mount:
         - ~/.pkg-cache:/var/cache/pacman/pkg
     script:
-        - "sudo pacman -Syu asciidoctor"
+        - "sudo pacman -Syu --noconfirm asciidoctor"
         - "autoreconf --install"
         - "./configure"
         - "make"
