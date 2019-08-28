@@ -2,6 +2,7 @@
 #include <getopt.h>
 #include "config.h"
 
+// Display help
 void help(char**);
 
 int main(int argc, char *argv[])
@@ -33,7 +34,7 @@ int main(int argc, char *argv[])
 		int option_index = 0;
 
 		// The actual parsing
-		cc = getopt_long(argc, argv, "ho:", options, &option_index);
+		cc = getopt_long(argc, argv, "hi:", options, &option_index);
 
 		// No more parseable arguments{{{
 		if(cc == -1)
@@ -60,6 +61,7 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
+// Help{{{
 void help(char* argv[])
 {
 	std::cout << "Uso:\n"
@@ -68,3 +70,4 @@ void help(char* argv[])
 		<< "    " << "-h, --help             Muestra la ayuda\n"
 		<< "    " << "-i, --input=TEXTO      Input del programa\n";
 }
+// }}}
