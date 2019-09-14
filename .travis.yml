@@ -6,4 +6,4 @@ services:
 script:
     - chmod a+w .
     - docker build . -t arch
-    - docker run --rm --privileged -v $(pwd):/home/docker/build arch -c "makepkg -s --noconfirm"
+    - docker run --rm -v $(pwd):/home/docker/build arch -c "makepkg -s --noconfirm"
