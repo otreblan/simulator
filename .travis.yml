@@ -6,4 +6,5 @@ services:
 script:
     #- chmod a+w .
     - docker build . -t arch
-    - docker run --rm -v $(pwd):/home/docker/build arch -c "sudo chown docker . ; makepkg -s --noconfirm"
+      #- docker run --rm -v $(pwd):/home/docker/build arch -c "sudo chown docker . ; makepkg -s --noconfirm"
+    - docker run -u `stat -c "%u:%g" /home/docker/build` --rm -v $(pwd):/home/docker/build arch -c "makepkg -s --noconfirm"
