@@ -3,18 +3,6 @@ sudo: required
 
 services:
     - docker
-
-arch:
-    packages:
-        - "ruby"
-    mount:
-        - ~/.pkg-cache:/var/cache/pacman/pkg
-    script:
-        - "gem install asciidoctor"
-        - "autoreconf --install"
-        - "./configure"
-        - "make"
-        - "sudo make install"
-
 script:
-    - "curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash"
+    - docker build . -t arch
+    - docker run --rm -v $(pwd):/home/docker/build arch -c "makepkg -s --noconfirm"
