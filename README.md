@@ -1,3 +1,4 @@
+![Travis (.com) branch](https://img.shields.io/travis/com/otreblan/hello/master?style=flat-square)
 # A template
 
 ## Depencencies
