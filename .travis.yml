@@ -3,9 +3,9 @@ services:
 - docker
 script:
 - docker build . -t arch
-- docker run  -v $(pwd):/home/docker/build arch -c "cp PKGBUILD /tmp ;\\
-    cd /tmp;\\
-    makepkg -s --noconfirm;\\
+- docker run  -v $(pwd):/home/docker/build arch -c "cp PKGBUILD /tmp ;
+    cd /tmp;
+    makepkg -s --noconfirm;
     sudo mv *.tar.xz /home/docker/build"
 deploy:
   provider: releases
