@@ -1,8 +1,17 @@
 sudo: required
-
-
 services:
-    - docker
+- docker
 script:
-    - docker build . -t arch
-    - docker run  -v $(pwd):/home/docker/build arch -c "cp PKGBUILD /tmp ; cd /tmp; makepkg -s --noconfirm; sudo mv *.tar.xz /home/docker/build"
+- docker build . -t arch
+- docker run  -v $(pwd):/home/docker/build arch -c "cp PKGBUILD /tmp ;\
+    cd /tmp;\
+    makepkg -s --noconfirm;\
+    sudo mv *.tar.xz /home/docker/build"
+deploy:
+  provider: releases
+  api_key:
+    secure: cEEVnlGUThHFregRJHqhbp/qC55Wt8UW7P9Fw6kpFgMWolWf1Xpy+QhsaTLMo6ovend0kl73lv5btp0LSg0dwE4POc5VRvvN8OwX6vqTU7CHmoNK1s9RLgkVTaq/TcrB8b73DKCZWgEWXVJZ6CcuryKSO6EjNX/0vON8jTfzaVua8UMu/8YmF0KDU8exZ9ldRM86bcW8lLfYvyTYLenqzvPN4T2U+0qKyijC+G9K/omviJJ4kc9+MabvOAlSsD2g9/+0pwxfSo6aqLhadxLgDJfvn4l2hR7VFeU4a9MM9jIgLQIYzJFV0DD445toWdFT5joev/qw/rYtZ4yqiyZe0x7UxsR4A7P6RRwfnZy2hFw0bliNnZQSA70nhwfm4pN4RYZqVhOTLvOgRoK9irOtd564lE8VN/Q51R806HSL5pPy67hJq8KFFVTpYK0zu/tgka7UqUqImIvIiaXjD0dE71Dvu9mY9bQFfc5h2mbgdeW3vJZEZbkgR/M2oyJvfN/bLe+lAvJns8+DRyAT7qXaWmcms3hj8QCSn6Pd5416Bh3cmArgZXM9aTvIQVC4HzNo7dLZBCfQcCj0JAXaH9XE6Hn3e1dJLhbBo26+aFXzv1vBc39ZBl+hjs1dF6+Bp5R0CjmKyyGJX95Z9+s+NbyP1DblfO6xQN1+b9yns1GNQJI=
+  file: '*.tar.xz'
+  on:
+    repo: otreblan/hello
+    tags: true
