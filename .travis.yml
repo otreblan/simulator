@@ -11,6 +11,7 @@ deploy:
     provider: releases
     api_key:
         secure: "Sw66OsJhyHxqcZ97vrkRBosS8sxjN22scg2EGfXk/GKdmD4eIIBF6LxH+/5mwSYncqDRAm68YzhWW/+6SuwFWmZkVdz1UYnzTufYWAkoqW/KeMttJnrcMiy57S4r8AkEdPDVV42RhIQkJUtGRb6ylvAQctqjRpKAxEDl9ckkGm55W1OGS7GnMWxiqX0ZiZGGn4bdNgRwfPn/FqGrLm1i9IuYz7PMK4c63s8JY4/SfBV28iyf+30sameoFVo5xqofcKnOR3CBRtgUSwoU52iAWtXJsV1EyvOw+Lkyo9KBxT79qYmueTPjapgr1CQQgJMHZS4x+gHCAR1iboOAdX8Kj1m18pqbfaw307CDYDQXDmlLCJQO5fohXULXgW0SFKdLqDZQB7gHPJSBdW1YZ2qU7zywIfA/KnHro5mAdKxRn1OZApHpq285hAh2/qx4Nj7gvK1F7B6EpsBWdk88OKbZmnKrQksvavVzLKVBUZLLrBb6S3rM5Gc9bbQnhKWae7U1P/2+S/YoQErPROS8fr7d7b53FtkwE6OqYby4LEoDQulQb0HpgkpvnKzC+Wvm+ybTRlqZIxloq9w+t4IByP4Nvrz4gv7PVuhqcH4APdFr6X2/fOE0WI7H7OsEPIzh418jn6/zXNhwZC7SWHwsg5KicWXagLN0TO7UBN4Dn1TUPBA="
+    file_glob: true
     file: "*.tar.xz"
     skip_cleanup: true
     on:
