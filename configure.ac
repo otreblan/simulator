@@ -16,7 +16,7 @@ AC_DEFUN(AC_CHECK_CHECK_PROG,[
 #}}}
 
 AC_INIT([hello], [0.0.1])
-#AC_CONFIG_AUX_DIR([aux])
+AC_CONFIG_AUX_DIR([aux])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 
 # Language

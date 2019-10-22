@@ -10,6 +10,7 @@ Makefile.in
 # http://www.gnu.org/software/autoconf
 
 autom4te.cache
+aux
 /autoscan.log
 /autoscan-*.log
 /aclocal.m4
