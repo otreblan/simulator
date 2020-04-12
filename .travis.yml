@@ -4,7 +4,7 @@ services:
 script:
     - docker build . -t arch
     - docker run  -v $(pwd):/home/docker/build arch -c "cp PKGBUILD /tmp ;
-      cd /tmp;
+      cd pkg;
       makepkg -s --noconfirm;
       sudo mv *pkg.tar.* /home/docker/build"
 deploy:
