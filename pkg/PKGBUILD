@@ -1,7 +1,7 @@
 # Maintainer: Otreblan <otreblain@gmail.com>
 
 pkgname=hello-git
-pkgver=r24.d58b411
+pkgver=v1.7.r7.gfe1de1a
 pkgrel=1
 epoch=
 pkgdesc="A c++ template"
@@ -15,8 +15,12 @@ checkdepends=()
 optdepends=()
 provides=('hello')
 conflicts=('hello')
-source=("${pkgname}::git+${url}.git")
+source=("${pkgname}::git+file://$(git rev-parse --show-toplevel)")
 md5sums=('SKIP')
+
+prepare() {
+	mkdir -p "$srcdir/$pkgname/build"
+}
 
 pkgver() {
 	cd "$srcdir/$pkgname"
@@ -27,13 +31,16 @@ pkgver() {
 }
 
 build() {
-	cd "$srcdir/$pkgname"
-	autoreconf --install
-	./configure --prefix=/usr
+	cd "$srcdir/$pkgname/build"
+
+	cmake \
+		-DCMAKE_INSTALL_PREFFIX=/usr \
+		..
+
 	make
 }
 
 package() {
-	cd "$srcdir/$pkgname"
+	cd "$srcdir/$pkgname/build"
 	make DESTDIR="$pkgdir/" install
 }

@@ -45,7 +45,7 @@ target_include_directories(${PROJECT_NAME}
 
 # Sources list
 add_subdirectory(src)
-add_subdirectory(doc)
+#add_subdirectory(doc)
 
 ## Libraries
 #pkg_check_modules(RAPIDJSON REQUIRED RapidJSON)
