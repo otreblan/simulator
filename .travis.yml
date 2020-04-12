@@ -3,7 +3,8 @@ services:
     - docker
 script:
     - docker build . -t arch
-    - docker run  -v $(pwd):/home/docker/build arch -c "cd /tmp;
+    - docker run  -v $(pwd):/home/docker/build arch -c "ls -lah;
+      cd /tmp;
       git clone --depth=1 build;
       cd build/pkg;
       makepkg -s --noconfirm;
