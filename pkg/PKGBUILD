@@ -1,7 +1,7 @@
 # Maintainer: Otreblan <otreblain@gmail.com>
 
 pkgname=hello-git
-pkgver=v1.7.r7.gfe1de1a
+pkgver=v1.7.r8.g19c3641
 pkgrel=1
 epoch=
 pkgdesc="A c++ template"
@@ -10,7 +10,7 @@ url="https://github.com/otreblan/hello"
 license=('GPL3')
 groups=()
 depends=()
-makedepends=('git' 'asciidoctor')
+makedepends=('git' 'asciidoctor' 'cmake')
 checkdepends=()
 optdepends=()
 provides=('hello')
