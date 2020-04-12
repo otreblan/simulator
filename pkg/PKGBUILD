@@ -1,10 +1,10 @@
 # Maintainer: Otreblan <otreblain@gmail.com>
 
 pkgname=hello-git
-pkgver=v1.7.r8.g19c3641
+pkgver=v1.8.r0.g62ce163
 pkgrel=1
 epoch=
-pkgdesc="A c++ template"
+pkgdesc="A C++ template"
 arch=('x86_64')
 url="https://github.com/otreblan/hello"
 license=('GPL3')
@@ -13,8 +13,8 @@ depends=()
 makedepends=('git' 'asciidoctor' 'cmake')
 checkdepends=()
 optdepends=()
-provides=('hello')
-conflicts=('hello')
+provides=(${pkgname%-git})
+conflicts=(${pkgname%-git})
 _gitrepo=$(git rev-parse --show-toplevel)
 _headcommit=$(git rev-parse HEAD)
 source=("$pkgname::git+file://$_gitrepo#commit=$_headcommit")
@@ -37,6 +37,8 @@ build() {
 
 	cmake \
 		-DCMAKE_INSTALL_PREFFIX=/usr \
+		-DCMAKE_UNITY_BUILD=ON \
+		-DCMAKE_INTERPROCEDURAL_OPTIMIZATION=ON \
 		..
 
 	make
