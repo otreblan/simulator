@@ -3,7 +3,7 @@
 // Display help
 void help(char**);
 
-int main(int argc, char *argv[])
+int main()
 {
 	std::cout << "Hello\n";
 	return 0;

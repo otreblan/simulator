@@ -14,7 +14,44 @@
 # You should have received a copy of the GNU General Public License
 # along with hello.  If not, see <http://www.gnu.org/licenses/>.
 
-#target_sources(doc
-#PRIVATE
-#hello.adoc
-#)
+find_program(ASCIIDOCTOR asciidoctor)
+
+if(NOT ASCIIDOCTOR)
+	message(SEND_ERROR "asciidoctor not found in $PATH")
+endif()
+
+
+add_custom_target(doc
+	DEPENDS
+		man1
+)
+
+# Man pages that end in *.1
+set(MAN1_SOURCES
+	hello.adoc
+)
+
+add_custom_target(man1
+	SOURCES
+		${MAN1_SOURCES}
+)
+
+foreach(MAN IN LISTS MAN1_SOURCES)
+
+	# Deleting the extension
+	get_filename_component(MAN ${MAN} NAME_WE)
+
+	add_custom_command(
+		TARGET doc
+		COMMAND asciidoctor --backend manpage --out-file ${MAN}.1
+			${CMAKE_CURRENT_SOURCE_DIR}/${MAN}.adoc
+
+		OUTPUTS ${CMAKE_CURRENT_BINARY_DIR}/${MAN}.1
+	)
+
+	install(FILES
+		${CMAKE_CURRENT_BINARY_DIR}/${MAN}.1
+		DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/man/man1/
+	)
+
+endforeach()

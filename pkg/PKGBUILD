@@ -42,6 +42,7 @@ build() {
 		..
 
 	make
+	make doc
 }
 
 package() {
