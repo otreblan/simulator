@@ -29,7 +29,7 @@ cmake_policy(SET CMP0076 NEW)
 include(GNUInstallDirs)
 include(FindPkgConfig)
 
-# The library itself
+# The program itself
 add_executable(${PROJECT_NAME})
 
 # Version for the library symlinks
@@ -74,7 +74,7 @@ add_subdirectory(doc)
 
 # Default flags
 if(NOT DEFINED ENV{CXXFLAGS})
-	set(CMAKE_CXX_FLAGS "-Wall -Wextra -g -Wl,-z,defs")
+	set(CMAKE_CXX_FLAGS "-Wall -Wextra -g")
 endif()
 
 # Install target
