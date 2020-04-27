@@ -1,6 +1,6 @@
-FROM archlinux/base
+FROM archlinux
 
-RUN pacman -Syu base-devel git --noconfirm
+RUN pacman -Syu base base-devel git --noconfirm
 
 # Esto debería crear el usuario docker y añadirlo al grupo sudo
 RUN useradd -m docker
