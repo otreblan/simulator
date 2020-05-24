@@ -66,10 +66,10 @@ add_subdirectory(doc)
 #)
 #
 ## Other flags
-#target_compile_definitions(${PROJECT_NAME}
+#target_compile_options(${PROJECT_NAME}
 #PUBLIC
 #${RAPIDJSON_CFLAGS_OTHER}
-#RAPIDJSON_HAS_STDSTRING=1
+#-DRAPIDJSON_HAS_STDSTRING=1
 #)
 
 # Default flags
