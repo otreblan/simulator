@@ -47,33 +47,31 @@ target_include_directories(${PROJECT_NAME}
 add_subdirectory(src)
 add_subdirectory(doc)
 
-## Libraries
-#pkg_check_modules(RAPIDJSON REQUIRED RapidJSON)
-#include(FindBoost)
+## Shared libraries
+#pkg_check_modules(shared
+#	REQUIRED IMPORTED_TARGET
+#		libfoo1
+#		libfoo2
+#)
 #
-## Header path
-#target_include_directories(${PROJECT_NAME}
-#PUBLIC
-#${RAPIDJSON_INCLUDE_DIRS}
-#${Boost_INCLUDE_DIRS}
+## Header only libraries
+#pkg_check_modules(header_only
+#	REQUIRED IMPORTED_TARGET
+#		libfoo3
+#		libfoo4
 #)
 #
 ## Linking
 #target_link_libraries(${PROJECT_NAME}
-#PUBLIC
-#${RAPIDJSON_LIBRARIES}
-#${Boost_LIBRARIES}
-#)
+#	PRIVATE
+#		PkgConfig::shared
 #
-## Other flags
-#target_compile_options(${PROJECT_NAME}
-#PUBLIC
-#${RAPIDJSON_CFLAGS_OTHER}
-#-DRAPIDJSON_HAS_STDSTRING=1
+#	INTERFACE
+#		PkgConfig::header_only
 #)
 
 # Default flags
-if(NOT DEFINED ENV{CXXFLAGS})
+if(UNIX AND NOT DEFINED ENV{CXXFLAGS})
 	set(CMAKE_CXX_FLAGS "-Wall -Wextra -g")
 endif()
 
