@@ -17,7 +17,7 @@
 cmake_minimum_required(VERSION 3.13.0)
 
 project(hello
-	VERSION 1.7
+	VERSION 3.0
 	DESCRIPTION "A C++ template"
 	HOMEPAGE_URL "https://github.com/otreblan/hello"
 	LANGUAGES "CXX"
@@ -32,7 +32,7 @@ include(FindPkgConfig)
 # The program itself
 add_executable(${PROJECT_NAME})
 
-# Version for the library symlinks
+# C++ version
 set_target_properties(${PROJECT_NAME}
 	PROPERTIES
 		CXX_STANDARD 17
@@ -40,7 +40,8 @@ set_target_properties(${PROJECT_NAME}
 
 # Headers
 target_include_directories(${PROJECT_NAME}
-	PRIVATE ${PROJECT_SOURCE_DIR}/include
+	PRIVATE
+		${PROJECT_SOURCE_DIR}/include
 )
 
 # Sources list
