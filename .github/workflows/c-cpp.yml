@@ -1,0 +1,27 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ '*' ]
+  pull_request:
+    branches: [ '*' ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: deps
+      run: sudo apt-get install asciidoctor
+    - name: mkdir build
+      run: mkdir -p build
+    - name: build
+      run: cd build &&
+            cmake
+            -DCMAKE_CXX_COMPILER=g++-9
+            -DCMAKE_BUILD_TYPE=Release
+            .. &&
+            make -j$(nproc) &&
+            make doc
