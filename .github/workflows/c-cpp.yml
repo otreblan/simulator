@@ -13,6 +13,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: deps
+      run: sudo apt install asciidoctor
+
     - name: configure
       run: CXXFLAGS="-O2 -pipe -fno-plt" cmake
         -DCMAKE_CXX_COMPILER=g++-9
@@ -40,6 +43,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
+    - name: Syu
+      run: yay -Syu --noconfirm
 
     - name: chown
       run: chown aur pkg
