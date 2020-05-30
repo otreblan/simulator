@@ -7,21 +7,50 @@ on:
     branches: [ '*' ]
 
 jobs:
-  build:
-
+  ubuntu:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: deps
-      run: sudo apt-get install asciidoctor
-    - name: mkdir build
-      run: mkdir -p build
+
+    - name: configure
+      run: CXXFLAGS="-O2 -pipe -fno-plt" cmake
+        -DCMAKE_CXX_COMPILER=g++-9
+        -DCMAKE_BUILD_TYPE=Release
+        -DCMAKE_INSTALL_PREFIX=/usr
+        -B build
+
     - name: build
-      run: cd build &&
-            cmake
-            -DCMAKE_CXX_COMPILER=g++-9
-            -DCMAKE_BUILD_TYPE=Release
-            .. &&
-            make -j$(nproc) &&
-            make doc
+      run: |
+          export MAKEFLAGS=-j$(nproc)
+          cmake --build build
+          cmake --build build --target doc
+
+    - name: deb
+      run: cmake --build build --target package
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: ubuntu_package
+        path: build/*.deb
+
+  arch-linux:
+    runs-on: ubuntu-latest
+    container: oblique/archlinux-yay
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: chown
+      run: chown aur pkg
+
+    - name: makepkg
+      working-directory: ./pkg
+      run: |
+          export MAKEFLAGS=-j$(nproc)
+          sudo -Eu aur makepkg -s --noconfirm
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: arch_package
+        path: pkg/*.pkg.tar.*

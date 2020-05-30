@@ -80,3 +80,8 @@ endif()
 install(TARGETS ${PROJECT_NAME}
 	DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
+
+# *.deb packaging
+configure_file(CPackConfig.cmake.in
+	${CMAKE_BINARY_DIR}/CPackConfig.cmake
+)
