@@ -45,7 +45,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Syu
-      run: yay -Syu --noconfirm
+      run: sudo -u aur yay -Syu --noconfirm
 
     - name: chown
       run: chown aur pkg
