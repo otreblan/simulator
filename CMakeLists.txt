@@ -28,6 +28,7 @@ cmake_policy(SET CMP0076 NEW)
 
 include(GNUInstallDirs)
 include(FindPkgConfig)
+include(CPack)
 
 # The program itself
 add_executable(${PROJECT_NAME})
@@ -44,9 +45,9 @@ target_include_directories(${PROJECT_NAME}
 		${PROJECT_SOURCE_DIR}/include
 )
 
-# Sources list
-add_subdirectory(src)
-add_subdirectory(doc)
+add_subdirectory(src) # Sources list
+add_subdirectory(doc) # Documentation
+add_subdirectory(pkg) # Packaging
 
 ## Shared libraries
 #pkg_check_modules(shared
@@ -79,9 +80,4 @@ endif()
 # Install target
 install(TARGETS ${PROJECT_NAME}
 	DESTINATION ${CMAKE_INSTALL_BINDIR}
-)
-
-# *.deb packaging
-configure_file(CPackConfig.cmake.in
-	${CMAKE_BINARY_DIR}/CPackConfig.cmake
 )
