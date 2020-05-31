@@ -48,10 +48,10 @@ jobs:
       run: sudo -u aur yay -Syu --noconfirm
 
     - name: chown
-      run: chown aur pkg
+      run: chown aur pkg/arch
 
     - name: makepkg
-      working-directory: ./pkg
+      working-directory: ./pkg/arch
       run: |
           export MAKEFLAGS=-j$(nproc)
           sudo -Eu aur makepkg -s --noconfirm
@@ -59,4 +59,4 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: arch_package
-        path: pkg/*.pkg.tar.*
+        path: pkg/arch/*.pkg.tar.*
