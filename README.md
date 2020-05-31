@@ -1,4 +1,4 @@
-![Travis (.com) branch](https://img.shields.io/travis/com/otreblan/hello/master?style=flat-square)
+![C/C++ CI](https://github.com/otreblan/hello/workflows/C/C++%20CI/badge.svg)
 # A template
 
 ## Depencencies
