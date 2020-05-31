@@ -9,6 +9,6 @@
 ## Build
 ``` bash
 git clone https://github.com/otreblan/hello
-cd hello/pkg
+cd hello/pkg/arch
 makepkg -si
 ```
