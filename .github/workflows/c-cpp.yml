@@ -8,17 +8,17 @@ on:
 
 jobs:
   ubuntu:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
     - uses: actions/checkout@v2
 
     - name: deps
-      run: sudo apt install asciidoctor
+      run: sudo apt install asciidoctor g++-10
 
     - name: configure
       run: CXXFLAGS="-O2 -pipe -fno-plt" cmake
-        -DCMAKE_CXX_COMPILER=g++-9
+        -DCMAKE_CXX_COMPILER=g++-10
         -DCMAKE_BUILD_TYPE=Release
         -DCMAKE_INSTALL_PREFIX=/usr
         -B build
