@@ -47,6 +47,9 @@ jobs:
     - name: Syu
       run: sudo -u aur yay -Syu --noconfirm
 
+    - name: Zstd
+      run: sed -i 's/tar\.xz/tar.zst/' /etc/makepkg.conf
+
     - name: chown
       run: chown aur pkg/arch
 
