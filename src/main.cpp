@@ -16,8 +16,11 @@
 
 #include <iostream>
 
-int main(int argc, char *argv[])
+int main()
 {
-	std::cout << argv[argc > 0 ? 1 : 0] << '\n';
+	// Test warnings
+	int i;
+
+	std::cout << "Hello\n";
 	return 0;
 }
