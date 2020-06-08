@@ -17,7 +17,7 @@ jobs:
       run: sudo apt install asciidoctor g++-10
 
     - name: configure
-      run: CXXFLAGS="-O2 -pipe -fno-plt" cmake
+      run: CXXFLAGS="-O2 -pipe -fno-plt -Wall -Wextra" cmake
         -DCMAKE_CXX_COMPILER=g++-10
         -DCMAKE_BUILD_TYPE=Release
         -DCMAKE_INSTALL_PREFIX=/usr
