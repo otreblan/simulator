@@ -43,17 +43,26 @@ jobs:
     container: oblique/archlinux-yay
 
     steps:
+    - name: Syu
+      run: sudo -u aur yay -Syu --noconfirm jq
+
     - name: Get last tag
       id: tag
       env:
-        REPO: https://github.com/${{ github.repository }}
+        url: https://api.github.com/repos/${{ github.repository }}/tags
       run: |
           set -o pipefail
-          echo ::set-output name=LAST_TAG::$(git ls-remote --tags $REPO | sed "s#.*refs/tags/\(.*\)#\1#" | awk -F^ '{print $1}' | sort -V | tail -n1)
+          echo ::set-output name=tag::$(curl \
+              --silent \
+              --header 'authorization: Bearer ${{ github.token }}' \
+              --url $url | \
+              jq --raw-input '.[].name' | \
+              head --lines=1 \
+          )
 
     - uses: actions/checkout@v2
       with:
-        ref: ${{ steps.tag.outputs.LAST_TAG }}
+        ref: ${{ steps.tag.outputs.tag }}
 
     - name: Checkout repo head
       env:
@@ -65,9 +74,6 @@ jobs:
 
     - name: Zstd
       run: sed -i 's/tar\.xz/tar.zst/' /etc/makepkg.conf
-
-    - name: Syu
-      run: sudo -u aur yay -Syu --noconfirm
 
     - name: chown
       run: chown --recursive aur pkg/arch
