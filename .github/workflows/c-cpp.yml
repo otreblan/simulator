@@ -12,6 +12,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - uses: ammaraskar/gcc-problem-matcher@master
 
     - name: deps
       run: sudo apt install asciidoctor g++-10

@@ -18,6 +18,9 @@
 
 int main()
 {
+	// Test warnings
+	int i;
+
 	std::cout << "Hello\n";
 	return 0;
 }
