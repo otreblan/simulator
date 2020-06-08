@@ -56,7 +56,7 @@ jobs:
               --silent \
               --header 'authorization: Bearer ${{ github.token }}' \
               --url $url | \
-              jq --raw-input '.[].name' | \
+              jq --raw-output '.[].name' | \
               head --lines=1 \
           )
 
