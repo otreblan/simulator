@@ -1,7 +1,7 @@
 # Maintainer: Otreblan <otreblain@gmail.com>
 
 pkgname=hello-git
-pkgver=v4.0.r3.g8005df4
+pkgver=v4.0.r14.g6e3c5b6
 pkgrel=1
 epoch=
 pkgdesc="A C++ template"
@@ -22,6 +22,7 @@ md5sums=('SKIP')
 
 prepare() {
 	mkdir -p "$srcdir/$pkgname/build"
+	gendesk -f --pkgname "$pkgname" --pkgdesc "$pkgdesc"
 }
 
 pkgver() {
@@ -47,6 +48,9 @@ build() {
 }
 
 package() {
+	install -Dm644 "${pkgname%-git}.desktop" "$pkgdir/usr/share/applications/${pkgname%-git}.desktop"
+	install -Dm644 "${pkgname%-git}.png" "$pkgdir/usr/share/pixmaps/${pkgname%-git}.png"
+
 	cd "$srcdir/$pkgname/build"
 	make DESTDIR="$pkgdir/" install
 }
