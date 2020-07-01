@@ -22,6 +22,7 @@ jobs:
         -DCMAKE_CXX_COMPILER=g++-10
         -DCMAKE_BUILD_TYPE=Release
         -DCMAKE_INSTALL_PREFIX=/usr
+        -DCMAKE_INTERPROCEDURAL_OPTIMIZATION=ON
         -B build
 
     - name: build
