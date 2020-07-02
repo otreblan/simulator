@@ -32,7 +32,9 @@ jobs:
           cmake --build build --target doc
 
     - name: deb
-      run: cmake --build build --target package
+      run: |
+          strip --strip-all $(find build -maxdepth 1 -executable -type f)
+          cmake --build build --target package
 
     - uses: actions/upload-artifact@v2
       with:
