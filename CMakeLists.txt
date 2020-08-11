@@ -73,7 +73,7 @@ add_subdirectory(pkg) # Packaging
 #)
 
 # Default flags
-if(UNIX AND NOT DEFINED ENV{CXXFLAGS})
+if(UNIX AND NOT (DEFINED ENV{CXXFLAGS} OR CMAKE_CXX_FLAGS))
 	set(CMAKE_CXX_FLAGS "-Wall -Wextra -g")
 endif()
 
