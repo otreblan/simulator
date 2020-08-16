@@ -64,13 +64,9 @@ function(add_man_target)
 
 endfunction()
 
-add_man_target(TARGET man1
-	SECTION 1
-	SOURCES
-		hello.adoc
-)
+add_subdirectory(man1)
 
-add_custom_target(doc
+add_custom_target(doc ALL
 	DEPENDS
 		man1
 )
