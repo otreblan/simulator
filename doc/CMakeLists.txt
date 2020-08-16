@@ -20,38 +20,57 @@ if(NOT ASCIIDOCTOR)
 	message(SEND_ERROR "asciidoctor not found in $PATH")
 endif()
 
+function(add_man_target)
+	set(options)
+	set(oneValueArgs SECTION TARGET)
+	set(multiValueArgs SOURCES)
+
+	cmake_parse_arguments(ADD_MAN_TARGET
+		"${options}"
+		"${oneValueArgs}"
+		"${multiValueArgs}"
+		${ARGN}
+	)
+
+	string(REGEX MATCH "^[0123456789nx]" SECTION_NUM ${ADD_MAN_TARGET_SECTION})
+
+	foreach(SOURCE IN LISTS ADD_MAN_TARGET_SOURCES)
+		get_filename_component(MAN_NAME ${SOURCE} NAME_WE)
+		set(GROFF_NAME "${MAN_NAME}.${ADD_MAN_TARGET_SECTION}")
+
+		add_custom_command(OUTPUT ${GROFF_NAME}
+			DEPENDS ${SOURCE}
+			WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+			COMMENT "${SOURCE} -> ${GROFF_NAME}"
+			COMMAND
+				asciidoctor
+					--backend manpage
+					--out-file "${CMAKE_CURRENT_BINARY_DIR}/${GROFF_NAME}"
+					${SOURCE}
+		)
+
+		list(APPEND MAN_GROFF ${GROFF_NAME})
+
+		install(FILES
+			"${CMAKE_CURRENT_BINARY_DIR}/${GROFF_NAME}"
+			DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/man/man${SECTION_NUM}/"
+		)
+	endforeach()
+
+	add_custom_target(${ADD_MAN_TARGET_TARGET}
+		DEPENDS
+			"${MAN_GROFF}"
+	)
+
+endfunction()
+
+add_man_target(TARGET man1
+	SECTION 1
+	SOURCES
+		hello.adoc
+)
 
 add_custom_target(doc
 	DEPENDS
 		man1
 )
-
-# Man pages that end in *.1
-set(MAN1_SOURCES
-	hello.adoc
-)
-
-add_custom_target(man1
-	SOURCES
-		${MAN1_SOURCES}
-)
-
-foreach(MAN IN LISTS MAN1_SOURCES)
-
-	# Deleting the extension
-	get_filename_component(MAN ${MAN} NAME_WE)
-
-	add_custom_command(
-		TARGET doc
-		COMMAND asciidoctor --backend manpage --out-file ${MAN}.1
-			${CMAKE_CURRENT_SOURCE_DIR}/${MAN}.adoc
-
-		OUTPUTS ${CMAKE_CURRENT_BINARY_DIR}/${MAN}.1
-	)
-
-	install(FILES
-		${CMAKE_CURRENT_BINARY_DIR}/${MAN}.1
-		DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/man/man1/
-	)
-
-endforeach()
