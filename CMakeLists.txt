@@ -20,7 +20,6 @@ project(hello
 	VERSION 4.0
 	DESCRIPTION "A C++ template"
 	HOMEPAGE_URL "https://github.com/otreblan/hello"
-	LANGUAGES "CXX"
 )
 
 # Without this, paths are not relative in the sources list
