@@ -57,7 +57,7 @@ jobs:
     - name: Syu
       run: |
           echo "ParallelDownloads = 5" >> /etc/pacman.conf
-          pacman -Syu --noconfirm
+          pacman -Syu --noconfirm git
 
     - uses: actions/checkout@v2
       with:
