@@ -45,13 +45,16 @@ jobs:
 
   arch-linux:
     runs-on: ubuntu-latest
-    container: greyltc/archlinux-aur
+    container: archlinux:base-devel
 
     steps:
+    - name: Build user
+      run: useradd ab
+
     - name: Syu
       run: |
           echo "ParallelDownloads = 5" >> /etc/pacman.conf
-          sudo -u ab yay -Syu --noconfirm
+          pacman -Syu --noconfirm
 
     - uses: actions/checkout@v2
       with:
