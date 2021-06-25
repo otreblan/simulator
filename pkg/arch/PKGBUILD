@@ -1,7 +1,7 @@
 # Maintainer: Otreblan <otreblain@gmail.com>
 
 pkgname=hello-git
-pkgver=v4.0.r21.g2684a5d
+pkgver=v4.0.r30.gd09917a
 pkgrel=1
 epoch=
 pkgdesc="A C++ template"
@@ -15,13 +15,14 @@ checkdepends=()
 optdepends=()
 provides=(${pkgname%-git})
 conflicts=(${pkgname%-git})
-_gitrepo="$(git rev-parse --show-toplevel)"
-_headcommit="$(git rev-parse HEAD)"
-source=("$pkgname::git+file://$_gitrepo#commit=$_headcommit")
-md5sums=('SKIP')
 
 prepare() {
 	mkdir -p "$srcdir/$pkgname/build"
+
+	_gitrepo="$(git rev-parse --show-toplevel)"
+	_headcommit="$(git rev-parse HEAD)"
+	source=("$pkgname::git+file://$_gitrepo#commit=$_headcommit")
+	md5sums=('SKIP')
 }
 
 pkgver() {
