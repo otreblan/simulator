@@ -7,11 +7,17 @@
 ## Dependencies
 
 * `asciidoctor`
+* `bash-completion`
 * `cmake`
 
 ## Build
 ``` bash
 git clone https://github.com/otreblan/hello
-cd hello/pkg/arch
-makepkg -si
+cd hello
+
+mkdir -p build
+cd build
+
+cmake ..
+make
 ```

@@ -38,11 +38,8 @@ set_target_properties(${PROJECT_NAME}
 		CXX_STANDARD 17
 )
 
-# Headers
-target_include_directories(${PROJECT_NAME}
-	PRIVATE
-		${PROJECT_SOURCE_DIR}/include
-)
+# Packages
+find_package(bash-completion)
 
 add_subdirectory(src) # Sources list
 add_subdirectory(doc) # Documentation
@@ -80,6 +77,16 @@ if(UNIX)
 		set(CMAKE_CXX_FLAGS "-Wall -Wextra -g")
 	endif()
 endif()
+
+# Bash completion
+file(WRITE ${CMAKE_BINARY_DIR}/bash-completion/${PROJECT_NAME}
+	"complete -F _longopt ${PROJECT_NAME}"
+)
+
+install(FILES
+	${CMAKE_BINARY_DIR}/bash-completion/${PROJECT_NAME}
+	DESTINATION ${BASH_COMPLETION_COMPLETIONSDIR}/
+)
 
 # Install target
 install(TARGETS ${PROJECT_NAME}
