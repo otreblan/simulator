@@ -15,14 +15,13 @@ checkdepends=()
 optdepends=()
 provides=(${pkgname%-git})
 conflicts=(${pkgname%-git})
+_gitrepo="$(git rev-parse --show-toplevel)"
+_headcommit="$(git rev-parse HEAD)"
+source=("$pkgname::git+file://$_gitrepo#commit=$_headcommit")
+md5sums=('SKIP')
 
 prepare() {
 	mkdir -p "$srcdir/$pkgname/build"
-
-	_gitrepo="$(git rev-parse --show-toplevel)"
-	_headcommit="$(git rev-parse HEAD)"
-	source=("$pkgname::git+file://$_gitrepo#commit=$_headcommit")
-	md5sums=('SKIP')
 }
 
 pkgver() {
