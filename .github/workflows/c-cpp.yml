@@ -49,7 +49,9 @@ jobs:
 
     steps:
     - name: Syu
-      run: sudo -u ab yay -Syu --noconfirm
+      run: |
+          echo "ParallelDownloads = 5" >> /etc/pacman.conf
+          sudo -u ab yay -Syu --noconfirm
 
     - uses: actions/checkout@v2
       with:
