@@ -49,7 +49,10 @@ jobs:
 
     steps:
     - name: Build user
-      run: useradd ab
+      run: |
+          USER=ab
+          useradd $USER
+          echo "$USER ALL=(ALL) NOPASSWD: /usr/bin/pacman" >> /etc/sudoers.d/$USER-no-password
 
     - name: Syu
       run: |
