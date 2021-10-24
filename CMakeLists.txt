@@ -71,10 +71,10 @@ add_subdirectory(pkg) # Packaging
 # Default flags
 if(UNIX)
 	if(NOT (DEFINED ENV{CFLAGS} OR CMAKE_C_FLAGS))
-		set(CMAKE_C_FLAGS "-Wall -Wextra -g")
+		set(CMAKE_C_FLAGS "-Wall -Wextra -g -Og")
 	endif()
 	if(NOT (DEFINED ENV{CXXFLAGS} OR CMAKE_CXX_FLAGS))
-		set(CMAKE_CXX_FLAGS "-Wall -Wextra -g")
+		set(CMAKE_CXX_FLAGS "-Wall -Wextra -g -Og")
 	endif()
 endif()
 
