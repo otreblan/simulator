@@ -2,7 +2,7 @@
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/otreblan/hello?logo=github)
 ![GitHub](https://img.shields.io/github/license/otreblan/hello?logo=gnu)
 
-# A C++ template
+# {{ DESCRIPTION }}
 
 ## Dependencies
 
@@ -12,8 +12,8 @@
 
 ## Build
 ``` bash
-git clone https://github.com/otreblan/hello
-cd hello
+git clone {{ HOMEPAGE_URL }}
+cd {{ NAME }}
 
 mkdir -p build
 cd build

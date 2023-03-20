@@ -17,6 +17,9 @@ jobs:
     - name: deps
       run: sudo apt install asciidoctor g++-10 bash-completion
 
+    - name: start
+      run: ./start.sh
+
     - name: configure
       run: cmake
         -DCMAKE_CXX_COMPILER=g++-10
@@ -65,6 +68,9 @@ jobs:
 
     - name: chown
       run: chown --recursive ab pkg/arch
+
+    - name: start
+      run: ./start.sh
 
     - name: makepkg
       working-directory: ./pkg/arch
