@@ -48,3 +48,5 @@ package() {
 	cd "$srcdir/$pkgname/build"
 	make DESTDIR="$pkgdir/" install
 }
+
+# shellcheck shell=bash disable=SC2034
