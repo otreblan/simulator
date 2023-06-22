@@ -55,7 +55,7 @@ add_subdirectory(pkg) # Packaging
 ## Linking
 #target_link_libraries(${PROJECT_NAME}
 #	PRIVATE
-#		PkgConfig::shared
+#		PkgConfig::libraries
 #)
 
 # Default flags
