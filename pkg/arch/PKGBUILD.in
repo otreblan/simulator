@@ -1,5 +1,7 @@
 # Maintainer: {{ USER_NAME }} <{{ USER_EMAIL }}>
 
+# shellcheck shell=bash disable=SC2034,SC2154,SC2164
+
 pkgname={{ NAME }}-git
 pkgver=v{{ VERSION }}
 pkgrel=1
@@ -13,16 +15,12 @@ depends=('gcc-libs')
 makedepends=('git' 'asciidoctor' 'cmake' 'bash-completion')
 checkdepends=()
 optdepends=()
-provides=(${pkgname%-git})
-conflicts=(${pkgname%-git})
+provides=("${pkgname%-git}")
+conflicts=("${pkgname%-git}")
 _gitrepo="$(git rev-parse --show-toplevel)"
 _headcommit="$(git rev-parse HEAD)"
 source=("$pkgname::git+file://$_gitrepo#commit=$_headcommit")
 md5sums=('SKIP')
-
-prepare() {
-	mkdir -p "$srcdir/$pkgname/build"
-}
 
 pkgver() {
 	cd "$srcdir/$pkgname"
@@ -33,20 +31,15 @@ pkgver() {
 }
 
 build() {
-	cd "$srcdir/$pkgname/build"
-
-	cmake \
+	cmake -B build -S "$pkgname" \
+		-DCMAKE_BUILD_TYPE='None' \
 		-DCMAKE_INSTALL_PREFIX=/usr \
 		-DCMAKE_INTERPROCEDURAL_OPTIMIZATION=ON \
-		-DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
-		..
+		-DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
-	make
+	cmake --build build
 }
 
 package() {
-	cd "$srcdir/$pkgname/build"
-	make DESTDIR="$pkgdir/" install
+	DESTDIR="$pkgdir" cmake --install build
 }
-
-# shellcheck shell=bash disable=SC2034
