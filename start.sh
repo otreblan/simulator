@@ -1,23 +1,27 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC2155
 
-export NAME="hello"
-export DESCRIPTION="A C++ template"
-export VERSION="4.0"
-export HOMEPAGE_URL="https://github.com/otreblan/$NAME"
-export YEAR=$(date +%Y)
-export USER_NAME="Otreblan"
-export USER_EMAIL="otreblain@gmail.com"
+NAME="mini-crypto"
+DESCRIPTION="Toy blockchain"
+VERSION="0.0.0"
+HOMEPAGE_URL="https://github.com/utec-2023-2-seguridad/$NAME"
+YEAR="$(date +%Y)"
+USER_NAME="Otreblan"
+USER_EMAIL="alberto.oporto@utec.edu.pe"
 
-J2=j2
-
-# Exit if jinja2 isn't installed.
-which -- "${J2%%[ \t\n]*}" > /dev/null || exit 1
+function esc() {
+	printf "%s" "$@" | sed -e 's/[\/&]/\\&/g'
+}
 
 while IFS= read -rd "" filename; do
-	$J2 "$filename" -o "${filename%.in}"
-	mv --force "${filename%.in}" "$filename"
+	sed -i "$filename" \
+		-e "s/{{ NAME }}/$(esc "$NAME")/g" \
+		-e "s/{{ DESCRIPTION }}/$(esc "$DESCRIPTION")/g" \
+		-e "s/{{ VERSION }}/$(esc "$VERSION")/g" \
+		-e "s/{{ HOMEPAGE_URL }}/$(esc "$HOMEPAGE_URL")/g" \
+		-e "s/{{ YEAR }}/$(esc "$YEAR")/g" \
+		-e "s/{{ USER_NAME }}/$(esc "$USER_NAME")/g" \
+		-e "s/{{ USER_EMAIL }}/$(esc "$USER_EMAIL")/g"
+
 	git mv --verbose --force "$filename" "${filename%.in}"
 done < <(find . -name "*.in" -print0)
-
-git add -u
