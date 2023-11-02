@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC2155
 
-NAME="mini-crypto"
-DESCRIPTION="Toy blockchain"
+NAME="hello"
+DESCRIPTION="A C++ template"
 VERSION="0.0.0"
-HOMEPAGE_URL="https://github.com/utec-2023-2-seguridad/$NAME"
+REPOSITORY="otreblan/$NAME"
+HOMEPAGE_URL="https://github.com/$REPOSITORY"
 YEAR="$(date +%Y)"
 USER_NAME="Otreblan"
-USER_EMAIL="alberto.oporto@utec.edu.pe"
+USER_EMAIL="otreblain@gmail.com"
 
 function esc() {
 	printf "%s" "$@" | sed -e 's/[\/&]/\\&/g'
@@ -18,6 +19,7 @@ while IFS= read -rd "" filename; do
 		-e "s/{{ NAME }}/$(esc "$NAME")/g" \
 		-e "s/{{ DESCRIPTION }}/$(esc "$DESCRIPTION")/g" \
 		-e "s/{{ VERSION }}/$(esc "$VERSION")/g" \
+		-e "s/{{ REPOSITORY }}/$(esc "$REPOSITORY")/g" \
 		-e "s/{{ HOMEPAGE_URL }}/$(esc "$HOMEPAGE_URL")/g" \
 		-e "s/{{ YEAR }}/$(esc "$YEAR")/g" \
 		-e "s/{{ USER_NAME }}/$(esc "$USER_NAME")/g" \
