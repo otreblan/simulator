@@ -18,7 +18,14 @@
 
 int main()
 {
-	printf("Hello world\n");
+	float a;
+
+	a = 1.0/11.0;
+
+	if(a + a + a + a + a + a + a + a + a + a + a == 1.0)
+		printf("Equal\n");
+	else
+		printf("Not equal\n");
 
 	return 0;
 }
