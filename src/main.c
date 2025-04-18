@@ -14,19 +14,11 @@
 // You should have received a copy of the GNU General Public License
 // along with ufdtd.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <iostream>
-
-//https://hannes.hauswedell.net/post/2017/12/09/fmv/
-#if defined(__x86_64__)
-[[gnu::target_clones("default,arch=x86-64-v4")]]
-#endif
-void f()
-{
-	std::cout << "Hello\n";
-}
+#include <stdio.h>
 
 int main()
 {
-	f();
+	printf("Hello world\n");
+
 	return 0;
 }
