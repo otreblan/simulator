@@ -52,12 +52,13 @@ add_subdirectory(pkg) # Packaging
 #		libfoo1
 #		libfoo2
 #)
-#
-## Linking
-#target_link_libraries(${PROJECT_NAME}
-#	PRIVATE
+
+# Linking
+target_link_libraries(${PROJECT_NAME}
+	PRIVATE
+		m
 #		PkgConfig::libraries
-#)
+)
 
 # Default flags
 target_compile_options(${PROJECT_NAME}

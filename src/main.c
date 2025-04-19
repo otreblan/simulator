@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with ufdtd.  If not, see <http://www.gnu.org/licenses/>.
 
+#include <math.h>
 #include <stdio.h>
 
 void f11()
@@ -43,9 +44,25 @@ void f22()
 	printf("%12g %12g %12g\n", a, b, c);
 }
 
+void f33()
+{
+	static const int count = 23;
+
+	float a = 2.0;
+
+	for(int i = 0; i < count; i++)
+		a = sqrt(a);
+
+	for(int i = 0; i < count; i++)
+		a = a*a;
+
+	printf("%12g\n", a);
+}
+
 int main()
 {
-	f22();
+	//f22();
+	f33();
 
 	return 0;
 }
