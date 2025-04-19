@@ -16,7 +16,7 @@
 
 #include <stdio.h>
 
-int main()
+void f11()
 {
 	float a;
 
@@ -26,6 +26,26 @@ int main()
 		printf("Equal\n");
 	else
 		printf("Not equal\n");
+}
+
+void f22()
+{
+	float a = 1.0, b = 0.5, c;
+
+	c = a+b;
+
+	while(c != a)
+	{
+		b = b / 2.0;
+		c = a + b;
+	}
+
+	printf("%12g %12g %12g\n", a, b, c);
+}
+
+int main()
+{
+	f22();
 
 	return 0;
 }
