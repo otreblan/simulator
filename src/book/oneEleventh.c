@@ -14,13 +14,34 @@
 // You should have received a copy of the GNU General Public License
 // along with ufdtd.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "book/book.h"
+#include "book.h"
 
-int main()
+#include <stdio.h>
+
+void f11()
 {
-	//f12();
-	//f13();
-	f31();
+	float a;
 
-	return 0;
+	a = 1.0/11.0;
+
+	if(a + a + a + a + a + a + a + a + a + a + a == 1.0)
+		printf("Equal\n");
+	else
+		printf("Not equal\n");
 }
+
+void f12()
+{
+	float a = 1.0, b = 0.5, c;
+
+	c = a+b;
+
+	while(c != a)
+	{
+		b = b / 2.0;
+		c = a + b;
+	}
+
+	printf("%12g %12g %12g\n", a, b, c);
+}
+

@@ -14,13 +14,9 @@
 // You should have received a copy of the GNU General Public License
 // along with ufdtd.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "book/book.h"
+#pragma once
 
-int main()
-{
-	//f12();
-	//f13();
-	f31();
-
-	return 0;
-}
+void f11();
+void f12();
+void f13();
+void f31();

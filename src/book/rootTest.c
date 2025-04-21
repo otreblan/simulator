@@ -14,13 +14,23 @@
 // You should have received a copy of the GNU General Public License
 // along with ufdtd.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "book/book.h"
+#include "book.h"
 
-int main()
+#include <math.h>
+#include <stdio.h>
+
+void f13()
 {
-	//f12();
-	//f13();
-	f31();
+	static const int count = 23;
 
-	return 0;
+	float a = 2.0;
+
+	for(int i = 0; i < count; i++)
+		a = sqrt(a);
+
+	for(int i = 0; i < count; i++)
+		a = a*a;
+
+	printf("%12g\n", a);
 }
+
