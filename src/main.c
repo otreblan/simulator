@@ -29,7 +29,7 @@ void f11()
 		printf("Not equal\n");
 }
 
-void f22()
+void f12()
 {
 	float a = 1.0, b = 0.5, c;
 
@@ -44,7 +44,7 @@ void f22()
 	printf("%12g %12g %12g\n", a, b, c);
 }
 
-void f33()
+void f13()
 {
 	static const int count = 23;
 
@@ -61,8 +61,8 @@ void f33()
 
 int main()
 {
-	//f22();
-	f33();
+	//f12();
+	f13();
 
 	return 0;
 }
