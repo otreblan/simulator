@@ -19,4 +19,4 @@
 void f11();
 void f12();
 void f13();
-void f31();
+void f31(int maxTime);

@@ -16,11 +16,18 @@
 
 #include "book/book.h"
 
-int main()
+#include <stdlib.h>
+
+int main(int argc, char** argv)
 {
+	int maxTime = 250;
+
+	if(argc != 1)
+		maxTime = atoi(argv[1]);
+
 	//f12();
 	//f13();
-	f31();
+	f31(maxTime);
 
 	return 0;
 }

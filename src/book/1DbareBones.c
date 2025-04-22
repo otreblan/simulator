@@ -21,13 +21,11 @@
 
 #define SIZE 200
 
-void f31()
+void f31(int maxTime)
 {
 	double ez[SIZE] = {.0};
 	double hy[SIZE] = {.0};
 	const double imp0 = 377.0;
-
-	const int maxTime = 250;
 
 	for(int qTime = 0; qTime < maxTime; qTime++)
 	{
