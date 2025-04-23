@@ -20,3 +20,4 @@ void f11();
 void f12();
 void f13();
 void f31(int maxTime);
+void f34(int maxTime);

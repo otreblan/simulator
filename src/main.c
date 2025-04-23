@@ -27,7 +27,8 @@ int main(int argc, char** argv)
 
 	//f12();
 	//f13();
-	f31(maxTime);
+	//f31(maxTime);
+	f34(maxTime);
 
 	return 0;
 }

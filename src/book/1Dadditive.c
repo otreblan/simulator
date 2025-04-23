@@ -23,7 +23,7 @@
 
 #define SIZE 200
 
-void f31(int maxTime)
+void f34(int maxTime)
 {
 	double ez[SIZE] = {.0};
 	double hy[SIZE] = {.0};
@@ -44,8 +44,8 @@ void f31(int maxTime)
 		for(int mm = 1; mm < SIZE ; mm++)
 			ez[mm] += (hy[mm] - hy[mm-1]) * imp0;
 
-		// Hardcoded source node
-		ez[0] = exp(-(qTime-30.) * (qTime - 30.) / 100);
+		// Additive source node
+		ez[50] += exp(-(qTime-30.) * (qTime - 30.) / 100);
 
 		if(qTime % interval == 0)
 			write_snapshot(ez, SIZE, frame++, width);

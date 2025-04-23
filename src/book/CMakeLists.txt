@@ -16,6 +16,7 @@
 
 target_sources(${PROJECT_NAME}
 	PRIVATE
+		1Dadditive.c
 		1DbareBones.c
 		oneEleventh.c
 		rootTest.c

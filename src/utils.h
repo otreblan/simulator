@@ -31,3 +31,7 @@ void exit_errno();
 
 void clean_str(char** str);
 void clean_file(FILE** file);
+
+void write_snapshot_to_file(double* ez, size_t ez_size, FILE* file);
+void write_snapshot(double* ez, size_t ez_size, int frame, int width);
+
