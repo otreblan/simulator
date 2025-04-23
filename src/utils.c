@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with ufdtd.  If not, see <http://www.gnu.org/licenses/>.
 
+#include <assert.h>
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -27,11 +28,14 @@ void exit_errno()
 
 void clean_str(char** str)
 {
+	assert(str != NULL);
 	free(*str);
 }
 
 void clean_file(FILE** file)
 {
+	assert(file != NULL);
+
 	if(fclose(*file) == EOF)
 		exit_errno();
 }
