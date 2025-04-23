@@ -28,12 +28,12 @@ void write_snapshot_to_file(double* ez, size_t ez_size, FILE* file)
 			exit_errno();
 }
 
-void write_snapshot(double* ez, size_t ez_size, int frame)
+void write_snapshot(double* ez, size_t ez_size, int frame, int width)
 {
 	[[gnu::cleanup(clean_str)]]
 	char* filename = NULL;
 
-	if(asprintf(&filename, "sim.%d", frame) < 0)
+	if(asprintf(&filename, "sim.%0*d", width, frame) < 0)
 		exit_errno();
 
 	[[gnu::cleanup(clean_file)]]
@@ -51,7 +51,10 @@ void f31(int maxTime)
 {
 	double ez[SIZE] = {.0};
 	double hy[SIZE] = {.0};
+
 	const double imp0 = 377.0;
+	const int interval = 10;
+	const int width = ceil(log10(maxTime/interval));
 
 	int frame = 0;
 
@@ -68,8 +71,8 @@ void f31(int maxTime)
 		// Hardcoded source node
 		ez[0] = exp(-(qTime-30.) * (qTime - 30.) / 100);
 
-		if(qTime % 10 == 0)
-			write_snapshot(ez, SIZE, frame++);
+		if(qTime % interval == 0)
+			write_snapshot(ez, SIZE, frame++, width);
 	}
 
 }
