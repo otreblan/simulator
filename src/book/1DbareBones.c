@@ -23,9 +23,10 @@
 
 void write_snapshot_to_file(double* ez, size_t ez_size, FILE* file)
 {
+	PRINT_CHECK(fprintf(file, "x,value\n"));
+
 	for(size_t mm = 0; mm < ez_size; mm++)
-		if(fprintf(file, "%g\n", ez[mm]) < 0)
-			exit_errno();
+		PRINT_CHECK(fprintf(file, "%d,%g\n", (int)mm, ez[mm]));
 }
 
 void write_snapshot(double* ez, size_t ez_size, int frame, int width)
@@ -33,8 +34,7 @@ void write_snapshot(double* ez, size_t ez_size, int frame, int width)
 	[[gnu::cleanup(clean_str)]]
 	char* filename = NULL;
 
-	if(asprintf(&filename, "sim.%0*d", width, frame) < 0)
-		exit_errno();
+	PRINT_CHECK(asprintf(&filename, "sim.%0*d.csv", width, frame));
 
 	[[gnu::cleanup(clean_file)]]
 	FILE* snapshost = NULL;

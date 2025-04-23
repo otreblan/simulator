@@ -18,6 +18,14 @@
 
 #include <stdio.h>
 
+#define PRINT_CHECK(print) \
+{ \
+	if(print < 0) \
+	{\
+		exit_errno(); \
+	}\
+} \
+
 [[noreturn]]
 void exit_errno();
 
