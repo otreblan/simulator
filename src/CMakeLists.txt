@@ -19,4 +19,5 @@ add_subdirectory(book)
 target_sources(${PROJECT_NAME}
 	PRIVATE
 		main.c
+		utils.c
 )

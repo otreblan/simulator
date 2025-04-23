@@ -15,9 +15,35 @@
 // along with ufdtd.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "book.h"
+#include "../utils.h"
 
 #include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
+
+void write_snapshot_to_file(double* ez, size_t ez_size, FILE* file)
+{
+	for(size_t mm = 0; mm < ez_size; mm++)
+		if(fprintf(file, "%g\n", ez[mm]) < 0)
+			exit_errno();
+}
+
+void write_snapshot(double* ez, size_t ez_size, int frame)
+{
+	[[gnu::cleanup(clean_str)]]
+	char* filename = NULL;
+
+	if(asprintf(&filename, "sim.%d", frame) < 0)
+		exit_errno();
+
+	[[gnu::cleanup(clean_file)]]
+	FILE* snapshost = NULL;
+
+	if((snapshost = fopen(filename, "w")) == NULL)
+		exit_errno();
+
+	write_snapshot_to_file(ez, ez_size, snapshost);
+}
 
 #define SIZE 200
 
@@ -26,6 +52,8 @@ void f31(int maxTime)
 	double ez[SIZE] = {.0};
 	double hy[SIZE] = {.0};
 	const double imp0 = 377.0;
+
+	int frame = 0;
 
 	for(int qTime = 0; qTime < maxTime; qTime++)
 	{
@@ -40,7 +68,8 @@ void f31(int maxTime)
 		// Hardcoded source node
 		ez[0] = exp(-(qTime-30.) * (qTime - 30.) / 100);
 
-		printf("%g\n", ez[50]);
+		if(qTime % 10 == 0)
+			write_snapshot(ez, SIZE, frame++);
 	}
 
 }
