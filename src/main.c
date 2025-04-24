@@ -20,7 +20,7 @@
 
 int main(int argc, char** argv)
 {
-	int maxTime = 250;
+	int maxTime = 450;
 
 	if(argc != 1)
 		maxTime = atoi(argv[1]);
@@ -29,7 +29,7 @@ int main(int argc, char** argv)
 	//f13();
 	//f31(maxTime);
 	//f34(maxTime);
-	f36(maxTime);
+	f37(maxTime);
 
 	return 0;
 }
