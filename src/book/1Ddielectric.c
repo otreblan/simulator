@@ -49,7 +49,7 @@ void f37(int maxTime)
 			epsR[mm] = 9.0;
 
 	const double imp0 = 377.0;
-	const int interval = 10;
+	const int interval = 4;
 	const int width = ceil(log10(maxTime/interval));
 
 	int frame = 0;
