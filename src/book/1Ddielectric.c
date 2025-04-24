@@ -26,6 +26,9 @@
 
 void f37(int maxTime)
 {
+	const size_t boundary = 50;
+	const size_t dielectric_start = 100;
+
 	double ez[SIZE];
 	double hy[SIZE-1];
 	double epsR[SIZE];
@@ -39,8 +42,8 @@ void f37(int maxTime)
 		hy[mm] = 0.;
 
 	// Set relative permittivity
-	for(int mm = 0; mm < SIZE; mm++)
-		if(mm<100)
+	for(size_t mm = 0; mm < SIZE; mm++)
+		if(mm<dielectric_start)
 			epsR[mm] = 1.0;
 		else
 			epsR[mm] = 9.0;
@@ -48,8 +51,6 @@ void f37(int maxTime)
 	const double imp0 = 377.0;
 	const int interval = 10;
 	const int width = ceil(log10(maxTime/interval));
-
-	const size_t boundary = 50;
 
 	int frame = 0;
 
