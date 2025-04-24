@@ -52,3 +52,18 @@ _deps
 *.app
 
 build
+
+# create by https://github.com/iamcco/coc-gitignore (Thu Apr 24 2025 17:16:43 GMT-0500 (hora estándar de Perú))
+# JupyterNotebooks.gitignore:
+# gitignore template for Jupyter Notebooks
+# website: http://jupyter.org/
+
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+.jupyter_ystore.db
+.virtual_documents/
+
+# Remove previous ipynb_checkpoints
+#   git rm -r .ipynb_checkpoints/
+#
