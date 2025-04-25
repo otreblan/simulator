@@ -23,3 +23,4 @@ void f31(int maxTime);
 void f34(int maxTime);
 void f36(int maxTime);
 void f37(int maxTime);
+void f38(int maxTime);
