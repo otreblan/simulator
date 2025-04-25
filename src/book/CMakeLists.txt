@@ -20,6 +20,7 @@ target_sources(${PROJECT_NAME}
 		1DbareBones.c
 		1Ddielectric.c
 		1Dlossy.c
+		1Dmatched.c
 		1Dtfsf.c
 		oneEleventh.c
 		rootTest.c
